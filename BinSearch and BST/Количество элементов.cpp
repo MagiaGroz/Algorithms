@@ -1,0 +1,73 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+struct node{
+	int val;
+	node *left;
+	node *right;
+	node(int dat){
+	val=dat;
+	left=NULL;
+	right=NULL;
+	}
+};
+	bool first = false;
+	node *t = NULL;
+	int h=0;
+		node* add(node *root, int x){
+		
+			if (root==NULL){
+			if(!first){
+				
+				t = new node(x);
+				first= true;
+			}
+			h++;
+				return new node(x);
+			}
+			if(x>root->val){
+				root->right=add(root->right,x);
+			}
+			else if(x<root->val){
+				root->left=add(root->left,x);
+			}		
+			
+		return root;
+	}	
+	
+
+void printlist(node * root){
+	if(root != NULL){
+	if(root->left == NULL&&root->right==NULL){
+        cout << root->val <<endl;
+    }
+    else{
+    
+    	printlist(root->left);
+    	printlist(root->right);
+	}
+}
+}
+
+int main(){
+	vector<int> vec;
+	 node * root = NULL;
+	 int k;
+	 
+while(cin){
+	cin>>k;
+	if(k==0)
+	break;
+	vec.push_back(k);
+}
+
+   for(int i = 0; i < vec.size(); ++i){
+        root = add(root, vec[i]);
+    }
+   
+    cout<<h;
+    
+
+    return 0;
+}
